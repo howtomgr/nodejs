@@ -1,0 +1,18 @@
+[Unit]
+Description=nodejs - myapp
+After=syslog.target
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/node /var/lib/node/sites/myapp/index.js
+WorkingDirectory=/var/lib/node/sites/myapp
+Environment=NODE_ENV=production
+User=daemon
+Group=daemon
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=node-server
+
+[Install]
+WantedBy=multi-user.target
